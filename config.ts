@@ -1,11 +1,11 @@
 export default {
   settings: {
     finalizer: {
-      items: ['finalizerBase'],
+      items: ["finalizerBase"],
       finalizerBase: {
-        conditions: ['hasWin'],
+        conditions: ["hasWin"],
       },
     },
   },
-  mode: 'mock-value',
-}
+  mode: "mock-value",
+};

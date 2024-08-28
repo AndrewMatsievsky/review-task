@@ -1,14 +1,23 @@
-import "reflect-metadata"
+import "reflect-metadata";
 
-import { RoundService } from './round.service'
-import { RoundParamsDto } from './common/dto/round-params.dto'
-import * as process from 'node:process'
+import { RoundService } from "./components/round/round.service";
+import * as process from "node:process";
+import { container } from "tsyringe";
+import { RoundState } from "./components/round/round.state";
+import { RoundInjector } from "./components/round/round.injector";
+import { RoundProcessor } from "./components/round/round.processor";
 
-const roundService = new RoundService()
+container.register(RoundState, { useValue: new RoundState({}) });
 
+container.register(RoundService, { useClass: RoundService });
 
-const res = roundService.go(new RoundParamsDto({}))
+container.register(RoundInjector, { useClass: RoundInjector });
 
-console.log(res)
-process.exit(0)
+container.register(RoundProcessor, { useClass: RoundProcessor });
 
+const roundService = container.resolve(RoundService);
+
+const res = roundService.go();
+
+console.log(res);
+process.exit(0);

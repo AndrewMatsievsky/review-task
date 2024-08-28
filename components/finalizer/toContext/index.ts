@@ -1,26 +1,27 @@
-import conditions from '../conditions'
-import { ISpinParams } from '../../../types'
+import conditions from "../conditions";
+import { ISpinParams } from "../../../types";
 
 /**
  * @param {ISpinParams} params
  */
 function check(params: ISpinParams): any {
-  const { settings, agentDI } = params
-  const { [agentDI.glossary.finalizerTypes.CONTEXT]: config } = settings.finalizer
+  const { settings, agentDI } = params;
+  const { [agentDI.glossary.finalizerTypes.CONTEXT]: config } =
+    settings.finalizer;
   if (isEnable()) {
-    return config.toContext
+    return config.toContext;
   }
 
   function isEnable(): boolean {
     for (const conditionType of config.conditions) {
-      const conditionResult = conditions[conditionType](params)
+      const conditionResult = conditions[conditionType](params);
       if (!conditionResult) {
-        return false
+        return false;
       }
     }
-    return true
+    return true;
   }
 }
 
 /** @type {FinalizerInterface} */
-export default { check }
+export default { check };
