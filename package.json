@@ -3,14 +3,19 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node index.ts"
+    "start": "ts-node index.ts",
+    "prettier-write": "prettier --write '**/*.{js,ts,json}'"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
     "@types/node": "^20.14.11",
+    "prettier": "3.3.3",
     "ts-node": "^10.9.2",
     "tsyringe": "^4.8.0"
+  },
+  "dependencies": {
+    "reflect-metadata": "^0.2.2"
   }
 }

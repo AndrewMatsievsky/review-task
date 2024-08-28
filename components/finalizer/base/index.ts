@@ -1,27 +1,29 @@
-import conditions from '../conditions'
-import { ISpinParams } from '../../../types'
+import conditions from "../conditions";
+import { ISpinParams } from "../../../types";
+import { container } from "tsyringe";
+import { RoundInjector } from "../../round/round.injector";
 
 /**
  * @param {ISpinParams} params
  */
 function check(params: ISpinParams): void {
-  const { settings, agentDI } = params
-  const { finalizerBase: config } = settings.finalizer
+  const { settings } = params;
+  const { finalizerBase: config } = settings.finalizer;
   if (isEnable()) {
-    params.agentDI.injector.inject(params,{ contexts: ['1'] })
+    container.resolve(RoundInjector).inject(params, { contexts: ["1"] });
   }
 
   function isEnable(): boolean {
-    let result = true
+    let result = true;
     for (const conditionType of config.conditions) {
-      result = result && conditions[conditionType](params)
+      result = result && conditions[conditionType](params);
       if (!result) {
-        return result
+        return result;
       }
     }
-    return result
+    return result;
   }
 }
 
 /** @type {FinalizerInterface} */
-export default { check }
+export default { check };

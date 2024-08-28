@@ -14,10 +14,14 @@
     "declaration": true,
     "sourceMap": true,
     "declarationDir": "dist/types",
-    "types": [ "node"],
+    "types": ["node"]
   },
-  "include": ["*"],
-  "exclude": [
-    "node_modules",
-  ]
+  "include": [
+    "*",
+    "components/round/round.injector.ts",
+    "components/round/round.processor.ts",
+    "components/round/round.state.ts",
+    "components/round/round.service.ts"
+  ],
+  "exclude": ["node_modules"]
 }
